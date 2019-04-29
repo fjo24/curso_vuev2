@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Directiva v-show</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <div id="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Directiva v-if, v-else y templates</h1>
+                </div>
+                    <div class="col-md-4">
+                        <h3>Directiva v-if</h3>
+                        <h4 v-if="!mensaje">Escriba su comentario</h4>
+                        <h4 v-if="mensaje">Presione enter para continuar</h4>
+                        <input type="textarea" name="mensaje" v-model="mensaje"><br>
+                        <button v-show="mensaje" class="btn btn-info">Enviar</button>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Directiva v-else</h3>
+                        <h4 v-if="!mensaje2">Escriba su comentario</h4>
+                        <h4 v-else>Presione enter para continuar</h4>
+                        <input type="textarea" name="mensaje" v-model="mensaje2"><br>
+                        <button v-show="mensaje2" class="btn btn-info">Enviar</button>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Uso de template</h3>
+                        <template v-if="mensaje3">
+                            <h4>Presione enter para continuar</h4>
+                            <p>El equipo de soporte atendera rapidamente</p>
+                            <p>Tambien se puede comunicar via twitter</p>
+                        </template>
+                            <h4 v-else>Escriba su comentario</h4>
+                        <input type="textarea" name="mensaje" v-model="mensaje3"><br>
+                        <button v-show="mensaje3" class="btn btn-info">Enviar</button>
+                    </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#main',
+                data: {
+                    'mensaje': '',
+                    'mensaje2': '',
+                    'mensaje3': ''
+                }
+            });
+        </script>
+</body>
+</html>

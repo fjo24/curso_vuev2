@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listas en Vue V2</title>
+</head>
+<body>
+    <div id="main">
+        <ul>
+            <li v-for="item in people">{{ item }}</li>
+        </ul>
+        <input type="text" v-model="name" v-on:keyup.enter="addName">
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#main',
+        data:{
+            people:['Lynda', 'Jose', 'Carlos']
+        },
+        name:'',
+        methods: {
+            addName: function(){
+                this.people.push(this.name);
+                this.name = '';
+            }
+        }
+    });
+</script>
+</body>
+</html>

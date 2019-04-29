@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>V-bind en Vue V2</title>
+</head>
+<body>
+    <div id="main">
+        <input type="text" v-model="info">
+        <p>texto de prueba.. {{ info }}</p>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#main',
+        data:{
+            info:'texto de prueba'
+        }
+    });
+</script>
+</body>
+</html>

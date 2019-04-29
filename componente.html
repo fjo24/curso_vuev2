@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax en Vue V2</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <div id="main" class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h1>Post</h1>
+               <lista-comun v-bind:lists="posts"></lista-comun>
+            </div>
+            <div class="col-sm-4">
+                <h1>Albums</h1>
+                <lista-comun v-bind:lists="albums"></lista-comun>
+            </div>
+            <div class="col-sm-4">
+                <h1>Photos</h1>
+                <lista-comun v-bind:lists="photos"></lista-comun>
+            </div>
+            <div class="col-sm-4">
+                <pre>{{ $data }}</pre>
+            </div>
+        </div>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script type="text/javascript">
+        Vue.component('lista-comun',{
+            props: ['lists'],
+            template: `<ul class="list-group">
+                    <li v-for= "item in lists" class="list-group-item">
+                            {{ item.title }}
+                    </li>
+                </ul>`
+        })
+        var urlPosts = 'https://jsonplaceholder.typicode.com/posts';
+        var urlAlbum = 'https://jsonplaceholder.typicode.com/albums';
+    new Vue({
+        el: '#main',
+        created: function() {
+          this.getPosts(),
+          this.getAlbums()  
+        },
+        data:{
+            posts:[],
+            albums:[],
+            photos:[
+                    {title: 'foto 1'},
+                    {title: 'foto 2'},
+            ]
+        },
+        methods:{
+            getPosts: function(){
+                axios.get(urlPosts).then(response=>{
+                    this.posts = response.data
+                });
+            },
+            getAlbums: function(){
+                axios.get(urlAlbum).then(response=>{
+                    this.albums = response.data
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>
